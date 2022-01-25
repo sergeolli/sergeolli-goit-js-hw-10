@@ -14,17 +14,19 @@ const refs = {
  
 refs.input.addEventListener('input', lodash(() => {   
     if (refs.input.value.trim() === '' ) {
-        return;
-    } 
     refs.countryCardTwo.innerHTML = ' '
     refs.countryCard.innerHTML = ' '
+        return;
+    } 
+    
     fetchCountries(refs.input.value.trim())
     .then(renderCountry)
-        .catch(onFetchError)
+    .catch(onFetchError)
     
 },DEBOUNCE_DELAY))
 
 function renderCountry(country) {
+    refs.countryCardTwo.innerHTML = ' '
     if (country.length > 1 && country.length <= 10) {
                 country.forEach(e => {
                     const markup = templatesCard(e)
@@ -32,7 +34,8 @@ function renderCountry(country) {
                     console.log(markup)
                 })
                 
-            } else if (country.length <= 1) {
+    } else if (country.length <= 1) {
+                refs.countryCard.innerHTML = ' '
                 country.forEach(e => {
                      const newObject = {
                         flags: e.flags.svg,
