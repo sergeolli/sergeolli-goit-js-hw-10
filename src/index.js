@@ -14,11 +14,12 @@ const refs = {
  
 refs.input.addEventListener('input', lodash(() => {   
     if (refs.input.value.trim() === '' ) {
-    refs.countryCardTwo.innerHTML = ' '
-    refs.countryCard.innerHTML = ' '
-        return;
-    } 
+        refs.countryCard.innerHTML = ' '
+        refs.countryCardTwo.innerHTML = ' '
+        return; 
+    }
     
+    refs.countryCard.innerHTML = ' '
     fetchCountries(refs.input.value.trim())
     .then(renderCountry)
     .catch(onFetchError)
@@ -26,7 +27,7 @@ refs.input.addEventListener('input', lodash(() => {
 },DEBOUNCE_DELAY))
 
 function renderCountry(country) {
-    refs.countryCardTwo.innerHTML = ' '
+               refs.countryCardTwo.innerHTML = ' '
     if (country.length > 1 && country.length <= 10) {
                 country.forEach(e => {
                     const markup = templatesCard(e)
